@@ -14,7 +14,7 @@ public abstract class Illness {
     }
 
     public boolean state() {
-        return this.strength == 0;
+        return this.strength <= 0;
     }
 
     public String toString() {

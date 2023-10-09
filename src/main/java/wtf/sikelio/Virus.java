@@ -7,9 +7,9 @@ public class Virus extends Illness {
 
     @Override
     public int evolve() {
-        double lifePoint = (float)this.strength / 25;
+        double lifePoint = (float) this.strength / 25;
 
-        return (int)lifePoint;
+        return (int) lifePoint;
     }
 
     @Override

@@ -76,7 +76,7 @@ public class Patient {
         return !illnesses.isEmpty();
     }
 
-    public boolean idDead() {
+    public boolean isDead() {
         return this.lifePoint <= 0;
     }
 
@@ -97,9 +97,9 @@ public class Patient {
     public boolean sufferIllness() {
         for (Illness illness : illnesses) {
             if (this.getAge() < 15) {
-                illness.strength = (int)(illness.strength * 1.25);
+                illness.strength = (int) (illness.strength * 1.25);
             } else if (this.getAge() > 65) {
-                illness.strength = (int)(illness.strength * 1.33);
+                illness.strength = (int) (illness.strength * 1.33);
             }
         }
 
