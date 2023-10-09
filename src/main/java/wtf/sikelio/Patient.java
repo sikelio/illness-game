@@ -76,7 +76,7 @@ public class Patient {
     }
 
     public boolean idDead() {
-        return this.lifePoint == 0;
+        return this.lifePoint <= 0;
     }
 
     public void takeCare(Medicine medicine) {
@@ -96,9 +96,9 @@ public class Patient {
     public boolean sufferIllness() {
         for (Illness illness : illnesses) {
             if (this.getAge() < 15) {
-                illness.evolve();
+                illness.strength = (int)(illness.strength * 1.25);
             } else if (this.getAge() > 65) {
-                illness.evolve();
+                illness.strength = (int)(illness.strength * 1.33);
             }
         }
 
