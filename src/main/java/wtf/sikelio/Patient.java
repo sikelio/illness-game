@@ -17,6 +17,8 @@ public class Patient {
         this.lastname = lastname;
         this.lifePoint = lifePoint;
         this.age = age;
+
+        this.illnesses = new HashSet<>();
     }
 
     public String getFirstname() {

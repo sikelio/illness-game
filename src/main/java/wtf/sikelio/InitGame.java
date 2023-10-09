@@ -7,6 +7,12 @@ public class InitGame {
     private HashSet<Medicine> medicines;
     private HashSet<Patient> patients;
 
+    public InitGame() {
+        this.illnesses = new HashSet<>();
+        this.medicines = new HashSet<>();
+        this.patients = new HashSet<>();
+    }
+
     public HashSet<Illness> initIllness() {
         // Bacteria
         this.illnesses.add(new Bacteria("Gastroenteritis", 100, 1, "Digestive disorders"));
@@ -48,4 +54,6 @@ public class InitGame {
 
         return medicines;
     }
+
+
 }
