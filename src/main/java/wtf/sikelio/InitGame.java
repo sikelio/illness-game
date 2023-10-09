@@ -1,13 +1,19 @@
 package wtf.sikelio;
 
+import com.github.javafaker.Faker;
+
 import java.util.HashSet;
 
 public class InitGame {
+    private Faker faker;
+
     private HashSet<Illness> illnesses;
     private HashSet<Medicine> medicines;
     private HashSet<Patient> patients;
 
     public InitGame() {
+        this.faker = new Faker();
+
         this.illnesses = new HashSet<>();
         this.medicines = new HashSet<>();
         this.patients = new HashSet<>();
@@ -32,7 +38,7 @@ public class InitGame {
         this.illnesses.add(new Parasite("Tapeworm", 150, 6, "Significant weight loss, Violent stomach ache"));
         this.illnesses.add(new Parasite("Malaria", 300, 9, "Sudden, spiking or constant high fever"));
 
-        return illnesses;
+        return this.illnesses;
     }
 
     public HashSet<Medicine> initMedicine() {
@@ -52,8 +58,27 @@ public class InitGame {
         this.medicines.add(new Medicine("Aciclovir", Type.Antiviral));
         this.medicines.add(new Medicine("Iduviran", Type.Antiviral));
 
-        return medicines;
+        return this.medicines;
     }
 
+    public HashSet<Patient> initPatient() {
+        for (int i = 0; i < this.faker.number().randomDouble(0, 1, 3); i++) {
+            Patient patient = new Patient(
+                this.faker.name().firstName(),
+                this.faker.name().lastName(),
+                this.faker.number().randomDouble(0, 100, 150),
+                this.faker.number().randomDouble(0, 0, 100)
+            );
 
+            Illness[] illnessesArray = this.illnesses.toArray(new Illness[this.illnesses.size()]);
+
+            for (int j = 0; j < this.faker.number().randomDouble(0, 1, 3); j++) {
+                patient.addIllness(illnessesArray[(int) this.faker.number().randomDouble(0, 1, illnessesArray.length)]);
+            }
+
+            this.patients.add(patient);
+        }
+
+        return this.patients;
+    }
 }
