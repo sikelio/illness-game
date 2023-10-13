@@ -80,6 +80,10 @@ public class Patient {
         return this.lifePoint <= 0;
     }
 
+    public void incrementAge() {
+        this.age++;
+    }
+
     public void takeCare(Medicine medicine) {
         for (Illness illness : illnesses) {
             illness.treat(medicine);

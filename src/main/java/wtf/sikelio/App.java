@@ -56,6 +56,8 @@ public class App
                 for (Illness illness : patient.getIllnesses()) {
                     patient.setLifePoint(patient.getLifePoint() - illness.evolve());
                 }
+
+                patient.incrementAge();
             }
 
             if (gameEndedDueToDeath) {
