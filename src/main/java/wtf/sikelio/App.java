@@ -63,6 +63,7 @@ public class App
                 break;
             } else if (gameEndedDueToCure) {
                 System.out.println("Game finished due to all patient cured!");
+                break;
             }
 
             currentYear++;
