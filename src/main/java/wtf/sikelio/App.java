@@ -2,6 +2,7 @@ package wtf.sikelio;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Scanner;
 
 public class App 
 {
@@ -12,6 +13,8 @@ public class App
         HashSet<Illness> illnesses = game.initIllness();
         HashSet<Medicine> medicines = game.initMedicine();
         HashSet<Patient> patients = game.initPatient();
+
+        Scanner scanner = new Scanner(System.in);
 
         int currentYear = 2023;
         int numberOfPatients = patients.size();
@@ -49,8 +52,19 @@ public class App
                     patientIterator.remove();
                 }
 
-                Medicine randomMedicine = getRandomMedicine(medicines);
-                patient.takeCare(randomMedicine);
+                int numberofMedicine = 0;
+
+                for (Medicine medicine : medicines) {
+                    numberofMedicine++;
+
+                    System.out.println("[" + numberofMedicine + "] " + medicine.getName());
+                }
+
+                System.out.print("Enter medicine index: ");
+                String mededineIndex = scanner.nextLine();
+                Medicine[] medicinesArray = medicines.toArray(new Medicine[medicines.size()]);
+
+                patient.takeCare(medicinesArray[Integer.parseInt(mededineIndex)]);
                 patient.sufferIllness();
 
                 for (Illness illness : patient.getIllnesses()) {
@@ -70,17 +84,5 @@ public class App
 
             currentYear++;
         }
-    }
-
-    private static Medicine getRandomMedicine(HashSet<Medicine> medicines) {
-        int randomIndex = (int) (Math.random() * medicines.size());
-
-        Iterator<Medicine> medicineIterator = medicines.iterator();
-
-        for (int i = 0; i < randomIndex; i++) {
-            medicineIterator.next();
-        }
-
-        return medicineIterator.next();
     }
 }
